@@ -11,10 +11,9 @@ def outlierCleaner(predictions, ages, net_worths):
         each tuple is of the form (age, net_worth, error).
     """
     
-    cleaned_data = []
-
-    ### your code goes here
-
-    
-    return cleaned_data
+    square_errors = (net_worths - predictions)**2
+    cleaned_data = zip(ages, net_worths, square_errors) 
+    cleaned_data.sort(key=lambda datum: datum[2][0])
+    length = int(len(predictions) * 0.9)
+    return cleaned_data[:length]
 
